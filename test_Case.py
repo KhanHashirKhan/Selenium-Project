@@ -6,7 +6,6 @@ from functions import definedFunctions
 from locators import Locators
 from data import form
 
-
 @pytest.fixture(scope="class")
 def setup(request):
     """Setup WebDriver once per class"""
@@ -18,12 +17,11 @@ def setup(request):
     yield  # Run tests
     driver.quit()  # Close browser after all tests finish
 
-
 @pytest.mark.usefixtures("setup")
 class TestNew:
 
+    @pytest.mark.sanity  # ✅ Added marker
     def test_text_box(self):
-
         elm = definedFunctions(self.driver)  # self.driver is now assigned
         lc = Locators
         data = form
@@ -72,8 +70,8 @@ class TestNew:
         elm.send_keys_by_xpaths(lc.search, data.valid_Search_name)
         time.sleep(2)
 
+    @pytest.mark.sanity  # ✅ Added marker
     def test_Clic_Button(self):
-
         elm = definedFunctions(self.driver)
         lc = Locators
         data = form
@@ -89,13 +87,3 @@ class TestNew:
         elm.assert_text_by_xpath(lc.click_me_btn_text, data.click_me_text)
         time.sleep(2)
 
-
-    # def test_Clic_Button(self):
-    # 
-    #     elm = definedFunctions(self.driver)
-    #     lc = Locators
-    #     data = form
-    #
-    #     elm.click_on_button(lc.upload_image)
-    #     elm.upload_image(lc.file_btn, data.file_path)
-    #     time.sleep(4)

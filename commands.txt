@@ -1,0 +1,11 @@
+selenium
+pytest
+pytest-html
+pytest-xdist
+openPyxl
+allure-pytest
+
+pytest -s -v --html report/report.html
+
+git init
+java -jar jenkins.war
